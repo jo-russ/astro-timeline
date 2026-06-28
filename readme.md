@@ -13,6 +13,8 @@ Przykladowy wpis:
 2026-07-15 15:00:00Z+0200|Bitwa pod Grunwaldem|#fff|#357
 ```
 
-> **Waøne!**
+> **Wa≈ºne!**
 > Zwroc uwage na strefe czasowa. Domyslnie zostanie uzyta strefa czasowa komputera, ale eventy mozna definiowac w innej strefie.
-> Przyk≥adowo czasy w UTC **muszπ** zawierac ```Z+0000``` inaczej zostana zastosowana strefa czasowa przeglπdarki/komputera
+> Przyk≈Çadowo czasy w UTC **musz≈°** zawierac ```Z+0000``` inaczej zostana zastosowana strefa czasowa przegl≈°darki/komputera
+
+Live site: https://jo-russ.github.io/astro-timeline/
