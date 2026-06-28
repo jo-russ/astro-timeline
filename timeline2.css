@@ -1,0 +1,134 @@
+.timeline-box-v2 {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    bottom: 5%;
+
+    .config-button {
+        position: absolute;
+        right: 0.5rem;
+        opacity:0;
+        height: 100%;
+        cursor: pointer;
+        line-height: 100%;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.timeline-v2 {
+    display: flex;
+
+    &:hover {
+        .config-button {
+            opacity: 1;
+        }
+    }
+
+    .event {
+        transform: translateY(100%);
+    }
+
+    .event .text,
+    .dot .text {
+        position: absolute;
+        font-family: "Calibri", sans-serif;
+        white-space: nowrap;
+        color: #fff;
+        padding: 0.2rem 0.5rem;
+        border: solid #fff 0px;
+        border-radius: 0.3rem;
+    }
+
+    .right .text {
+        transform: translateX(200%);
+    }
+
+    .left .text {
+        transform: translateX(-100%) translateY(0);
+    }
+    .top .text {
+        transform: translateX(-50%) translateY(-100%);
+        text-align: center;
+    }
+    .bottom .text {
+        transform: translateX(-50%) translateY(66%);
+        text-align: center;
+    }
+    .top.left .text {
+        transform: translateX(-100%) translateY(-100%);
+    }
+    .bottom.right .text {
+        transform: translateX(100%) translateY(66%);
+        right:0;
+    }
+
+    .start,
+    .dot,
+    .blank,
+    .end-dot,
+    .end,
+    .tick,
+    .segment {
+        background-image: url("timeline.png");
+        background-repeat: repeat-x;
+        width:100px;
+        height:100px;
+        text-align: center;
+        color:#fff;
+        flex: 0 0 auto;
+    }
+
+    .segment {
+        flex: 1 0 auto;
+    }
+    .segment {
+        display: flex;
+        background-position: 0 -100px;
+    }
+
+    .dot {
+        position: absolute;
+        background-position: 0 -200px;
+    }
+
+    .tick {
+        position: absolute;
+        background-position: 0 -500px;
+    }
+
+    .left,
+    .right,
+    .top,
+    .bottom {
+        display: flex;
+    }
+
+    .border {
+        border: solid #000 1px;
+        border-radius: 0.3rem;
+    }
+
+    .dot > * {
+        height: 100%;
+    }
+
+    .end-dot {
+        background-position: 0 60%;
+    }
+
+    .end {
+        background-position: 0 80%;
+    }
+
+    .blank {
+        background-position: 0 200%;
+        background: transparent;
+    }
+
+    * {
+        --box-shadow: 0 0 2px 2px red inset;
+    }
+}

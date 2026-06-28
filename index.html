@@ -1,0 +1,53 @@
+<html>
+<head>
+    <link rel="stylesheet"  type="text/css" href="page.css" media="screen" />
+    <link rel="stylesheet"  type="text/css" href="timeline2.css" media="screen" />
+    <script src="plugin.class.js"></script>
+</head>
+<body>
+<timeline></timeline>
+<script>
+  $q=((s)=>document.querySelector(s));  $qa=((s)=>document.querySelectorAll(s));
+  const loadedPlugins = {};
+  const loader = (pluginClass) => {
+      console.log(`Loading ${pluginClass}...`);
+    try {
+      loadedPlugins[pluginClass] = eval(`new ${pluginClass}()`);
+    } catch (error) {
+      console.error(error);
+    };
+  }
+
+  const load = (plugin, file) => {
+    console.log(`Init ${plugin}...`);
+    const script = document.createElement('script');
+    script.onload = () => { loader(plugin); }
+    script.onreadystatechange = () => { loader(plugin); }
+    script.src = file;
+    document.head.appendChild(script);
+  }
+
+  fetch("./plugins.json").then(res=>res.json()).then((plugins) => {
+    console.log(plugins);
+    for (plugin in plugins) {
+      try {
+        load(plugin, plugins[plugin]);
+      } catch (error) {
+        console.error(error);
+      };
+    };
+  }).catch((error)=> {
+    $q('body').innerHTML=error;
+  });
+
+  setInterval(()=>{
+    let html = "";
+    for (plugin in loadedPlugins) {
+      html += loadedPlugins[plugin].render();
+    }
+    $q('timeline').innerHTML = html;
+  }, 333);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+html, body { margin:0; padding:0; background-color:#808080}
+
+.preview {
+    background-image:url('preview.jpg');
+    background-repeat:no-repeat;
+    background-position: 100% 0;
+}
+.link { cursor: pointer; }
+.config {
+    opacity:0;
+    position: fixed;
+    left:0;
+    top: 0;
+    background: #fff;
+    color:#000;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 1rem;
+    min-width: 450px;
+}
+
+.close-button::before {
+    content: "×";
+}
+.close-button {
+    position: absolute;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    border: solid #888 1px;
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.config > .row {
+    width: 100%;
+    display: grid;
+    grid-template: "a b" / 90% 10%;
+}
