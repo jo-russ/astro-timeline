@@ -20,7 +20,7 @@ html, body { margin:0; padding:0; background-color:#808080}
 }
 
 .close-button::before {
-    content: "\d7×";
+    content: "\d7";
 }
 .close-button {
     position: absolute;
