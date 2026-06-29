@@ -92,20 +92,20 @@ class TimelinePluginV2 extends Plugin {
 
      getNextEvent() {
         if (this._nextEvent === this._events.length) {
-            return {timeDiff: inf, name: "No more events", time: ""};
+            return [];
         }
         const now = (new Date()).getTime();
         const nextEvent = this._events[this._nextEvent];
         const timeDiff = nextEvent.date.getTime() - now;
 
         if (timeDiff > 0) {
-            return {
+            return [{
                 ...this._events[this._nextEvent],
                 timeTo: `${this.formatTime(timeDiff, true)}`,
                 time: nextEvent.date.toLocaleString("pl"),
                 name: `${nextEvent.name}`,
                 timeDiff
-                }
+                }]
         } else {
             this._nextEvent++;
         }
@@ -114,20 +114,22 @@ class TimelinePluginV2 extends Plugin {
 
      render() {
         const timeNow = (new Date()).toLocaleString("pl").split(' ')[1];
-        const events = [this.getNextEvent()];
+        const events = this.getNextEvent();
         const textStyle = `zoom: ${this._config.scale};font-size:${this._config.fontSize}rem;font-weight:${this._config.fontWeight}`;
         const boxStyle = `
             filter:invert(${this._config.invertMode});
             bottom:${this._config.marginBottom}%;
         `;
 
+        const blankStyle = events.length > 0 ? '' : ' blank';
+
         return `
 <div class="timeline-box-v2" style="${boxStyle}" onmouseup="${this.constructor._name}.call('showConfig')">
   <div class="timeline-v2" style="zoom:${1/this._config.scale}">
     <div class="blank" style="width:${this._config.marginLeft}%"></div>
-    <div class="start"></div>
-    <div class="segment" style="position:relative">
-      <div class="dot tick" style="left:0%">
+    <div class="start${blankStyle}"></div>
+    <div class="segment${blankStyle}" style="position:relative">
+      <div class="dot tick${blankStyle}" style="left:0%">
           <div class="top">
               <div class="text" style="${textStyle}">
                   ${timeNow}
@@ -155,13 +157,12 @@ class TimelinePluginV2 extends Plugin {
 
         `}).join('')}
     </div>
-    <div class="end"></div>
+    <div class="end${blankStyle}"></div>
     <div class="blank" style="width:${this._config.marginRight}%">
         <div class="config-button link" onmouseup="${this.constructor._name}.call('showConfig')" style="${textStyle}">&#x2699;</a>
     </div>
   </div>
 </div>
-
     `;
     }
 }
