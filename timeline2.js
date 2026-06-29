@@ -92,7 +92,7 @@ class TimelinePluginV2 extends Plugin {
 
      getNextEvent() {
         if (this._nextEvent === this._events.length) {
-            return [];
+            return;
         }
         const now = (new Date()).getTime();
         const nextEvent = this._events[this._nextEvent];
@@ -114,7 +114,7 @@ class TimelinePluginV2 extends Plugin {
 
      render() {
         const timeNow = (new Date()).toLocaleString("pl").split(' ')[1];
-        const events = this.getNextEvent();
+        const events = this.getNextEvent() ?? [];
         const textStyle = `zoom: ${this._config.scale};font-size:${this._config.fontSize}rem;font-weight:${this._config.fontWeight}`;
         const boxStyle = `
             filter:invert(${this._config.invertMode});
